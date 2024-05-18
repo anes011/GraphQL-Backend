@@ -10,6 +10,8 @@ const route = require('./route');
 
 const app = express();
 
+app.use(express.json());
+
 const httpServer = http.createServer(app);
 
 const server = new ApolloServer({
@@ -22,8 +24,6 @@ const server = new ApolloServer({
     await server.start();
 
     app.use('/graphql', expressMiddleware(server));
-
-    app.use(express.json());
 
     app.use(cors());
 
